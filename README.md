@@ -1,77 +1,132 @@
-# Base44 Project
+# Artsonna
 
-Use this repository to run and edit the app locally, then publish changes back through Base44.
+Artsonna is a curated marketplace for discovering and hiring creative professionals across New York City. It combines portfolio publishing, creative discovery, project collaboration, bookings, messaging, and local community experiences in one editorial-first platform.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## Product Overview
 
-## Prerequisites
+Artsonna supports two connected journeys:
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
+- **Creatives** build a public portfolio, publish services, showcase work, join the community, and manage client projects.
+- **Clients** discover talent through the House of Creatives, review portfolios, book services, message creatives, and manage active projects.
 
-See the [Base44 CLI docs](https://docs.base44.com/developers/references/cli/get-started/overview) if you want to run Base44 commands directly.
+## Core Features
 
-## Run Locally
+- **House of Creatives:** Search and filter creative professionals by discipline, location, style, budget, and availability.
+- **AI Portfolio Studio:** A guided five-step portfolio builder covering work, identity, online presence, review, and generation.
+- **Adaptive portfolios:** Responsive, ratio-preserving masonry galleries for images, video, audio, and project work.
+- **Projects workspace:** Unified inquiries, offers, conversations, bookings, deliverables, payments, and completed-project actions.
+- **Community:** NYC events, creative boards, circles, weekly prompts, mentorship, and creator spotlights.
+- **Profiles and services:** Persistent creative identities, service listings, pricing, availability, reviews, and public portfolio pages.
+- **Authentication:** Email, Google sign-in, OTP verification, and password recovery through Base44 authentication.
 
-Run the full local development environment from the project root:
+## Technology
+
+- React 18
+- Vite 6
+- Tailwind CSS
+- React Router
+- TanStack Query
+- Base44 SDK and backend services
+- shadcn/ui and Radix UI
+- Framer Motion
+
+## Project Structure
+
+```text
+src/
+  components/       Reusable interface and feature components
+  data/             Curated marketplace and community content
+  hooks/            Data and feature state hooks
+  lib/              Shared application utilities
+  pages/            Route-level screens
+base44/
+  entities/         Database entity definitions
+  functions/        Backend functions
+  config.jsonc      Base44 project configuration
+```
+
+The main application routes are registered in `src/App.jsx`. Base44 entities provide persistent storage for creative profiles, portfolios, assets, projects, bookings, messages, services, reviews, and community activity.
+
+## Local Development
+
+### Prerequisites
+
+- Node.js 18 or newer
+- npm
+- A Base44 project with access to this app
+
+### Install
 
 ```bash
-base44 dev
+npm install
 ```
 
-`base44 dev` starts the local Base44 development backend and, when this app is configured for it, also starts the frontend dev server for you. Use the frontend URL printed by the command.
+### Environment
 
-For example, when the Base44 project config includes a `serveCommand`, `base44 dev` can launch the frontend too:
-
-```json5
-{
-  "site": {
-    "serveCommand": "npm run dev"
-  }
-}
-```
-
-In a Base44 project this lives in `base44/config.jsonc`.
-
-## Run Only The Frontend
-
-If you only want to work on the frontend against the hosted Base44 backend, run:
-
-```bash
-npm run dev
-```
-
-Open the local URL printed by Vite.
-
-## Use The Hosted Backend
-
-For frontend-only development, create or update `.env.local` in the project root:
+To run the frontend against the hosted Base44 backend, create `.env.local` in the project root:
 
 ```bash
 VITE_BASE44_APP_ID=your_app_id
 VITE_BASE44_APP_BASE_URL=https://your-app.base44.app
 ```
 
-`VITE_BASE44_APP_ID` identifies the Base44 app.
+Do not commit `.env.local` or any credentials.
 
-`VITE_BASE44_APP_BASE_URL` tells the Base44 Vite plugin where to send local `/api` requests. Point it at your deployed Base44 app URL when you want the local frontend to use the hosted backend.
-
-When you use `base44 dev`, the command injects the local Base44 values for you, so `.env.local` is mainly needed for frontend-only workflows.
-
-## Publish Your Changes
-
-After pushing your changes to git, open the Base44 dashboard and publish the app:
+### Start the frontend
 
 ```bash
-base44 dashboard open
+npm run dev
 ```
 
-## Docs & Support
+Vite prints the local development URL in the terminal.
 
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
+### Start with the Base44 CLI
 
-Base44 CLI command reference: [https://docs.base44.com/developers/references/cli/commands/introduction](https://docs.base44.com/developers/references/cli/commands/introduction)
+Install the CLI and run the complete Base44 development environment:
 
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+```bash
+npm install -g base44@latest
+base44 dev
+```
+
+## Available Commands
+
+```bash
+npm run dev        # Start Vite development server
+npm run build      # Create a production build
+npm run preview    # Preview the production build
+npm run lint       # Run ESLint
+npm run lint:fix   # Fix supported lint issues
+npm run typecheck  # Run JavaScript type checking
+```
+
+## Production Build
+
+```bash
+npm run build
+```
+
+The production output is generated in `dist/`.
+
+## GitHub and Base44 Sync
+
+Artsonna uses Base44 GitHub two-way repository sync. Changes merged into the repository's `main` branch are reflected in Base44, and changes saved in Base44 are synchronized to the connected repository.
+
+After syncing changes, publish the app from the Base44 dashboard to make them available to users.
+
+Important requirements:
+
+- GitHub sync requires a supported Base44 plan.
+- The initial connection must be completed by the app owner.
+- The synchronized branch must be named `main`.
+- Repository sync is a permanent project configuration.
+
+## Documentation
+
+- [Base44 documentation](https://docs.base44.com/)
+- [Base44 CLI overview](https://docs.base44.com/developers/references/cli/get-started/overview)
+- [GitHub integration](https://docs.base44.com/Integrations/Using-GitHub)
+
+## Status
+
+Artsonna is under active development.
