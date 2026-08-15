@@ -16,6 +16,12 @@ import Messages from '@/pages/Messages';
 import Community from '@/pages/Community';
 import Profile from '@/pages/Profile';
 import PortfolioManager from '@/pages/PortfolioManager';
+import Account from '@/pages/Account';
+import EventDetail from '@/pages/EventDetail';
+import Login from '@/pages/Login';
+import Register from '@/pages/Register';
+import ForgotPassword from '@/pages/ForgotPassword';
+import ResetPassword from '@/pages/ResetPassword';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -44,7 +50,12 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/" element={<Home />} />
+      <Route path="/marketplace" element={<Discover />} />
       <Route path="/discover" element={<Discover />} />
       <Route path="/creative/:id" element={<CreativeDetail />} />
       <Route path="/saved" element={<Saved />} />
@@ -52,8 +63,10 @@ const AuthenticatedApp = () => {
       <Route path="/bookings" element={<Bookings />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/community" element={<Community />} />
+      <Route path="/community/events/:id" element={<EventDetail />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/portfolio" element={<PortfolioManager />} />
+      <Route path="/account" element={<Account />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

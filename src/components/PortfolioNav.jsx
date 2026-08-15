@@ -1,0 +1,2 @@
+const sections=[['Profile','profile'],['Portfolio','portfolio'],['Services','services'],['Availability','availability'],['Collaborators','collaborators'],['Public Profile Preview','preview']];
+export default function PortfolioNav(){return <nav className="mb-10 overflow-x-auto border-b border-black/15"><div className="flex min-w-max gap-7">{sections.map(([label,id])=><a key={id} href={`#${id}`} className="py-4 text-sm text-black/60 hover:text-black">{label}</a>)}</div></nav>}
