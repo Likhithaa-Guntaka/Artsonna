@@ -43,6 +43,28 @@
       "type": "number",
       "default": 0
     },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    },
+    "aspect_ratio": {
+      "type": "number"
+    },
+    "orientation": {
+      "type": "string",
+      "enum": [
+        "portrait",
+        "landscape",
+        "square",
+        "panoramic"
+      ]
+    },
+    "manually_ordered": {
+      "type": "boolean",
+      "default": false
+    },
     "visibility": {
       "type": "string",
       "enum": [

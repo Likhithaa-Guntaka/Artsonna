@@ -7,6 +7,7 @@ import { cleanPortfolioRecord, questionnaireKeys, questionnaireValues, restoreQu
 const sections = ['hero','work','projects','videos','about','experience','services','collaborators','contact'];
 const designKeys = ['portfolio_theme','background_color','surface_color','text_color','accent_color','heading_font','body_font','typography_scale','layout_style','gallery_style','hero_style','spacing_style','border_style','animation_style','mood'];
 const slugify = value => value.toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const imageMetadata = file => new Promise(resolve => { if (!file.type.startsWith('image/')) { resolve({}); return; } const url=URL.createObjectURL(file);const image=new window.Image();image.onload=()=>{const aspect=image.naturalWidth/image.naturalHeight;URL.revokeObjectURL(url);resolve({width:image.naturalWidth,height:image.naturalHeight,aspect_ratio:aspect,orientation:aspect>=1.8?'panoramic':aspect>1.08?'landscape':aspect<.92?'portrait':'square'})};image.onerror=()=>{URL.revokeObjectURL(url);resolve({})};image.src=url; });
 
 export default function usePortfolioBuilder() {
   const navigate = useNavigate();
@@ -206,7 +207,7 @@ export default function usePortfolioBuilder() {
     if (!accepted.length) return;
     setUploading(true); setError('');
     try {
-      const uploaded = await Promise.all(accepted.slice(0,20).map(file=>base44.integrations.Core.UploadFile({file}).then(({file_url})=>({profile_id:profile.id,portfolio_id:portfolioRef.current.id,file_url,file_name:file.name,media_type:file.type.startsWith('image/')?'image':file.type.startsWith('video/')?'video':file.type.startsWith('audio/')||/\.(mp3|wav|m4a|aac|ogg|flac)$/i.test(file.name)?'audio':'file',asset_kind:kind,selected:kind==='work',featured:false,sort_order:assets.length,visibility:'draft'}))));
+      const uploaded = await Promise.all(accepted.slice(0,20).map(async file=>{const metadata=await imageMetadata(file);const {file_url}=await base44.integrations.Core.UploadFile({file});return {profile_id:profile.id,portfolio_id:portfolioRef.current.id,file_url,file_name:file.name,media_type:file.type.startsWith('image/')?'image':file.type.startsWith('video/')?'video':file.type.startsWith('audio/')||/\.(mp3|wav|m4a|aac|ogg|flac)$/i.test(file.name)?'audio':'file',asset_kind:kind,selected:kind==='work',featured:false,sort_order:assets.length,visibility:'draft',manually_ordered:false,...metadata}}));
       const created = await base44.entities.PortfolioAsset.bulkCreate(uploaded.map((item,index)=>({...item,sort_order:assets.length+index})));
       setAssets(current=>[...current,...created]);
     } catch(e) { setError(e.message||'Upload failed.'); } finally { setUploading(false); }
@@ -214,7 +215,7 @@ export default function usePortfolioBuilder() {
 
   const changeAsset = async (id,change) => { setAssets(current=>current.map(item=>item.id===id?{...item,...change}:item)); await base44.entities.PortfolioAsset.update(id,change); };
   const removeAsset = async id => { await base44.entities.PortfolioAsset.delete(id); setAssets(current=>current.filter(item=>item.id!==id)); };
-  const moveAsset = async (index,direction,kind='work') => { const group=assets.filter(item=>item.asset_kind===kind);const target=index+direction;if(target<0||target>=group.length)return;const next=[...group];[next[index],next[target]]=[next[target],next[index]];const updates=next.map((item,i)=>({id:item.id,sort_order:i}));await base44.entities.PortfolioAsset.bulkUpdate(updates);setAssets(current=>current.map(item=>({...item,sort_order:updates.find(row=>row.id===item.id)?.sort_order??item.sort_order})).sort((a,b)=>a.sort_order-b.sort_order)); };
+  const moveAsset = async (index,direction,kind='work') => { const group=assets.filter(item=>item.asset_kind===kind);const target=index+direction;if(target<0||target>=group.length)return;const next=[...group];[next[index],next[target]]=[next[target],next[index]];const updates=next.map((item,i)=>({id:item.id,sort_order:i,manually_ordered:true}));await base44.entities.PortfolioAsset.bulkUpdate(updates);setAssets(current=>current.map(item=>{const update=updates.find(row=>row.id===item.id);return update?{...item,...update}:item}).sort((a,b)=>a.sort_order-b.sort_order)); };
 
   const generate = async () => {
     setStep(5); setGenerating(true); setSaving(true); setError(''); setNotice('');
