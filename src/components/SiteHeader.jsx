@@ -1,10 +1,12 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { base44 } from '@/api/base44Client';
 
 export default function SiteHeader(){
   const [open,setOpen]=useState(false);
-  const accountType=localStorage.getItem('accountType')||'hiring';
+  const [accountType,setAccountType]=useState(localStorage.getItem('accountType')||'hiring');
+  useEffect(()=>{base44.auth.me().then(user=>setAccountType(user.account_type||'hiring'))},[]);
   const links=accountType==='creative'
     ? [['Home','/'],['My Portfolio','/portfolio'],['Bookings','/bookings'],['Messages','/messages'],['Community','/community']]
     : [['Discover','/discover'],['Saved','/saved'],['Bookings','/bookings'],['Messages','/messages'],['Community','/community']];

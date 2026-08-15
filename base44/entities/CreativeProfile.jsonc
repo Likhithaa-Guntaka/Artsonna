@@ -5,28 +5,26 @@
     "user_id": {
       "type": "string"
     },
-    "name": {
+    "display_name": {
       "type": "string"
     },
     "profile_photo": {
       "type": "string"
     },
-    "cover_image": {
-      "type": "string"
-    },
     "creative_role": {
-      "type": "string"
-    },
-    "bio": {
-      "type": "string"
-    },
-    "location": {
       "type": "string"
     },
     "neighborhood": {
       "type": "string"
     },
-    "categories": {
+    "city": {
+      "type": "string",
+      "default": "NYC"
+    },
+    "short_bio": {
+      "type": "string"
+    },
+    "creative_categories": {
       "type": "array",
       "items": {
         "type": "string"
@@ -43,15 +41,25 @@
     },
     "starting_price": {
       "type": "number"
-    },
-    "featured": {
-      "type": "boolean",
-      "default": false
     }
   },
   "required": [
-    "name",
+    "user_id",
+    "display_name",
     "creative_role",
-    "neighborhood"
-  ]
+    "neighborhood",
+    "short_bio"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "data.user_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
 }
