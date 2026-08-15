@@ -27,7 +27,7 @@ async function fetchYouTubeChannelVideos(channelUrl) {
   const source = new URL(channelUrl);
   let channelId = source.pathname.match(/\/channel\/(UC[\w-]{20,})/)?.[1] || '';
   if (!channelId) {
-    const page = await fetch(channelUrl, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; NYCCreativeHub/1.0)' } });
+    const page = await fetch(channelUrl, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Artsonna/1.0)' } });
     if (!page.ok) return [];
     const html = await page.text();
     channelId = html.match(/"channelId":"(UC[\w-]{20,})"/)?.[1] || html.match(/itemprop="channelId"\s+content="(UC[\w-]{20,})"/)?.[1] || html.match(/\/channel\/(UC[\w-]{20,})/)?.[1] || '';
@@ -71,7 +71,7 @@ export default async function(req) {
     const verifiedYouTubeVideos = [...new Map(youtubeResults.flat().map(video => [videoIdFromUrl(video.video_url), video])).values()].slice(0, 8);
     if (!identity || !profile.display_name || !profile.creative_role) return Response.json({ error: 'Missing creator identity' }, { status: 400 });
 
-    const prompt = `You are the portfolio enrichment and creative-direction system for NYC Creative Hub. Build a distinctive portfolio for ${profile.display_name}, a ${profile.creative_role} based in ${profile.neighborhood || 'New York City'}.
+    const prompt = `You are the portfolio enrichment and creative-direction system for Artsonna. Build a distinctive portfolio for ${profile.display_name}, a ${profile.creative_role} based in ${profile.neighborhood || 'New York City'}.
 
 SOURCE PRIORITY — mandatory when facts conflict:
 1. Explicit questionnaire responses: ${identity}
