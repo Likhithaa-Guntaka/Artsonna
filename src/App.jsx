@@ -19,6 +19,7 @@ import PortfolioManager from '@/pages/PortfolioManager';
 import Account from '@/pages/Account';
 import EventDetail from '@/pages/EventDetail';
 import PublicPortfolio from '@/pages/PublicPortfolio';
+import CreatorStorefront from '@/pages/CreatorStorefront';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -59,6 +60,7 @@ const AuthenticatedApp = () => {
       <Route path="/marketplace" element={<Discover />} />
       <Route path="/discover" element={<Discover />} />
       <Route path="/creative/:id" element={<CreativeDetail />} />
+      <Route path="/storefront/:discipline" element={<CreatorStorefront />} />
       <Route path="/saved" element={<Saved />} />
       <Route path="/book/:id" element={<BookingForm />} />
       <Route path="/bookings" element={<Bookings />} />

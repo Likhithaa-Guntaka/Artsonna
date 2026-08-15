@@ -33,6 +33,8 @@
     --radius: 0.5rem;
     --home-background: 40 23% 95%;
     --terracotta: 14 42% 46%;
+    --storefront-line: 43 10% 86%;
+    --storefront-rust: 12 52% 43%;
     --font-heading: ui-sans-serif, system-ui, sans-serif;
     --font-body: ui-sans-serif, system-ui, sans-serif;
     --font-display: ui-sans-serif, system-ui, sans-serif;
@@ -86,6 +88,8 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
     --home-background: 40 23% 95%;
     --terracotta: 14 42% 46%;
+    --storefront-line: 43 10% 86%;
+    --storefront-rust: 12 52% 43%;
   }
 }
 
