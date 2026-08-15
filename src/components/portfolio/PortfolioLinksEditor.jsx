@@ -1,5 +1,0 @@
-const fields=[
- ['instagram_url','Instagram'],['youtube_url','YouTube'],['linkedin_url','LinkedIn'],['behance_url','Behance'],['personal_website_url','Personal website'],['portfolio_url','Existing portfolio']
-];
-
-export default function PortfolioLinksEditor({portfolio,onChange}){return <div className="grid gap-5 sm:grid-cols-2">{fields.map(([key,label])=><label key={key} className="field-label">{label}<input type="url" value={portfolio[key]||''} onChange={event=>onChange({[key]:event.target.value})} className="form-field" placeholder="https://"/></label>)}<label className="field-label sm:col-span-2">Other links<textarea value={(Array.isArray(portfolio.other_links)?portfolio.other_links:[]).join('\n')} onChange={event=>onChange({other_links:event.target.value.split('\n').map(item=>item.trim()).filter(Boolean)})} className="form-field min-h-24" placeholder="One link per line"/></label></div>}
