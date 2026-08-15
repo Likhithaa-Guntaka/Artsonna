@@ -11,6 +11,15 @@
     "profile_photo": {
       "type": "string"
     },
+    "cover_image": {
+      "type": "string"
+    },
+    "portfolio_images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "creative_role": {
       "type": "string"
     },
