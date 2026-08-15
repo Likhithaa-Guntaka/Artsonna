@@ -11,8 +11,8 @@ import Discover from '@/pages/Discover';
 import CreativeDetail from '@/pages/CreativeDetail';
 import Saved from '@/pages/Saved';
 import BookingForm from '@/pages/BookingForm';
-import Bookings from '@/pages/Bookings';
-import Messages from '@/pages/Messages';
+import Projects from '@/pages/Projects';
+import LegacyProjectsRedirect from '@/components/projects/LegacyProjectsRedirect';
 import Community from '@/pages/Community';
 import Profile from '@/pages/Profile';
 import PortfolioManager from '@/pages/PortfolioManager';
@@ -61,8 +61,9 @@ const AuthenticatedApp = () => {
       <Route path="/creative/:id" element={<CreativeDetail />} />
       <Route path="/saved" element={<Saved />} />
       <Route path="/book/:id" element={<BookingForm />} />
-      <Route path="/bookings" element={<Bookings />} />
-      <Route path="/messages" element={<Messages />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/bookings" element={<LegacyProjectsRedirect />} />
+      <Route path="/messages" element={<LegacyProjectsRedirect />} />
       <Route path="/community" element={<Community />} />
       <Route path="/community/events/:id" element={<EventDetail />} />
       <Route path="/profile" element={<Profile />} />

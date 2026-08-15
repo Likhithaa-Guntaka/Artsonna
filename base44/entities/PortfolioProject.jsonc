@@ -5,6 +5,9 @@
     "creator_id": {
       "type": "string"
     },
+    "source_project_id": {
+      "type": "string"
+    },
     "title": {
       "type": "string"
     },

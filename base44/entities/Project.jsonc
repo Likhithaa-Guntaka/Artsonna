@@ -2,13 +2,35 @@
   "name": "Project",
   "type": "object",
   "properties": {
+    "project_type": {
+      "type": "string",
+      "enum": [
+        "community",
+        "client_project"
+      ]
+    },
     "creator_id": {
       "type": "string"
     },
     "creator_name": {
       "type": "string"
     },
+    "creator_role": {
+      "type": "string"
+    },
+    "creator_image": {
+      "type": "string"
+    },
+    "client_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
     "title": {
+      "type": "string"
+    },
+    "project_title": {
       "type": "string"
     },
     "description": {
@@ -23,9 +45,78 @@
     "category": {
       "type": "string"
     },
+    "service_id": {
+      "type": "string"
+    },
+    "service_name": {
+      "type": "string"
+    },
+    "conversation_id": {
+      "type": "string"
+    },
+    "booking_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "inquiry",
+        "pending",
+        "active",
+        "completed",
+        "cancelled"
+      ]
+    },
+    "offer_status": {
+      "type": "string",
+      "enum": [
+        "request_received",
+        "offer_sent",
+        "awaiting_acceptance",
+        "awaiting_payment",
+        "accepted"
+      ]
+    },
     "project_date": {
       "type": "string",
       "format": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "price": {
+      "type": "number"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "refunded"
+      ],
+      "default": "unpaid"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "unread": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": [

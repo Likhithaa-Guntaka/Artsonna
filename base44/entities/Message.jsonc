@@ -14,11 +14,27 @@
     "booking_id": {
       "type": "string"
     },
+    "project_id": {
+      "type": "string"
+    },
     "conversation_id": {
       "type": "string"
     },
     "message": {
       "type": "string"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "message",
+        "system",
+        "offer"
+      ],
+      "default": "message"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
     },
     "timestamp": {
       "type": "string",

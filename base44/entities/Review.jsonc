@@ -5,6 +5,9 @@
     "booking_id": {
       "type": "string"
     },
+    "project_id": {
+      "type": "string"
+    },
     "reviewer_id": {
       "type": "string"
     },
@@ -24,7 +27,6 @@
     }
   },
   "required": [
-    "booking_id",
     "creator_id",
     "rating"
   ]
