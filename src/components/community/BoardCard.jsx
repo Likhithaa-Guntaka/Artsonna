@@ -2,7 +2,7 @@ import { Image } from '@/components/ui/image';
 
 export default function BoardCard({board,imageCount,selected,onClick}){
  return <button onClick={onClick} className={`overflow-hidden text-left ${selected?'bg-black text-white':'border border-black/15 bg-background'}`}>
-  <Image src={board.images[0]} alt={`${board.title} cover`} className="aspect-[16/9] w-full"/>
+  <Image src={board.images[0]} alt={`${board.title} cover`} className="aspect-[4/3] w-full object-cover" style={{objectPosition:board.imagePositions?.[0]||'center'}}/>
   <div className="p-5">
    <h3 className="text-2xl font-semibold">{board.title}</h3>
    <div className="mt-4 flex items-center justify-between gap-4">
