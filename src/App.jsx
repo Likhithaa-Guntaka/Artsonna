@@ -18,6 +18,7 @@ import Profile from '@/pages/Profile';
 import PortfolioManager from '@/pages/PortfolioManager';
 import Account from '@/pages/Account';
 import EventDetail from '@/pages/EventDetail';
+import PublicPortfolio from '@/pages/PublicPortfolio';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -66,6 +67,7 @@ const AuthenticatedApp = () => {
       <Route path="/community/events/:id" element={<EventDetail />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/portfolio" element={<PortfolioManager />} />
+      <Route path="/portfolio/:id" element={<PublicPortfolio />} />
       <Route path="/account" element={<Account />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>

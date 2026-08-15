@@ -41,6 +41,89 @@
     },
     "starting_price": {
       "type": "number"
+    },
+    "portfolio_theme": {
+      "type": "string",
+      "enum": [
+        "editorial",
+        "minimal",
+        "bold",
+        "playful"
+      ],
+      "default": "editorial"
+    },
+    "background_style": {
+      "type": "string",
+      "enum": [
+        "light",
+        "warm",
+        "dark"
+      ],
+      "default": "light"
+    },
+    "accent_color": {
+      "type": "string",
+      "default": "#111111"
+    },
+    "typography_style": {
+      "type": "string",
+      "enum": [
+        "modern",
+        "editorial",
+        "expressive",
+        "classic"
+      ],
+      "default": "editorial"
+    },
+    "layout_style": {
+      "type": "string",
+      "enum": [
+        "grid",
+        "stacked",
+        "asymmetric",
+        "full_bleed"
+      ],
+      "default": "asymmetric"
+    },
+    "hero_image": {
+      "type": "string"
+    },
+    "portfolio_intro": {
+      "type": "string"
+    },
+    "portfolio_prompt": {
+      "type": "string"
+    },
+    "portfolio_section_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hidden_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "portfolio_status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "marketplace_eligible": {
+      "type": "boolean",
+      "default": false
+    },
+    "existing_portfolio_url": {
+      "type": "string"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time"
     }
   },
   "required": [
