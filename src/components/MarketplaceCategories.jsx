@@ -1,2 +1,2 @@
-const categories=['All','Photography','Video','Creative Direction','Styling','Makeup','Design','Editing','Illustration'];
+const categories=['All','Photography','Video','Creative Direction','Styling','Makeup','Music','Design','Editing','Illustration'];
 export default function MarketplaceCategories({active,onChange}){return <div className="overflow-x-auto border-b border-black/10"><div className="flex min-w-max gap-7">{categories.map(category=><button key={category} onClick={()=>onChange(category)} className={`border-b-2 py-4 text-sm ${active===category?'border-black text-black':'border-transparent text-black/50'}`}>{category}</button>)}</div></div>}
