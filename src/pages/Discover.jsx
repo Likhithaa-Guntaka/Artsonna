@@ -1,13 +1,11 @@
 import { useEffect,useMemo,useRef,useState } from 'react';
-import { useNavigate,useParams,useSearchParams } from 'react-router-dom';
+import { useParams,useSearchParams } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import PageShell from '@/components/PageShell';
 import CreativeCard from '@/components/CreativeCard';
-import MarketplaceHero from '@/components/marketplace/MarketplaceHero';
 import DiscoveryFilters from '@/components/marketplace/DiscoveryFilters';
 import { creatives as sampleCreatives } from '@/data/marketplace';
 import usePublishedCreatives from '@/hooks/usePublishedCreatives';
-import { loadCreatorProfile } from '@/lib/creatorProfile';
 
 const fieldRoles={Photography:['Photographer'], 'Film / Video':['Videographer','Filmmaker','Cinematographer','Animator / Motion Designer'], 'Makeup & Beauty':['Makeup Artist','Beauty Artist'], Styling:['Stylist','Fashion Designer'], 'Creative Direction':['Creative Director','Set Designer'], Design:['Designer','Graphic Designer','Animator / Motion Designer'], Illustration:['Illustrator'], Art:['Artist','Multidisciplinary Artist','Set Designer'], Music:['Musician','Performer','Music Photographer','DJ / Music Producer']};
 const fieldSlugs={Photography:'photography','Film / Video':'film-video','Makeup & Beauty':'makeup-beauty',Styling:'styling','Creative Direction':'creative-direction',Design:'design',Illustration:'illustration',Art:'art',Music:'music'};
@@ -22,23 +20,17 @@ export default function Discover(){
  const creatives=[...published,...sampleCreatives];
  const [params]=useSearchParams();
  const {field:fieldSlug}=useParams();
- const navigate=useNavigate();
- const browseRef=useRef(null);
  const initialField=slugFields[fieldSlug]||params.get('field');
  const [q,setQ]=useState('');
  const [filters,setFilters]=useState({Field:initialField?[initialField]:[],Style:[],Logistics:[],People:[]});
  useEffect(()=>{const routedField=slugFields[fieldSlug];if(routedField)setFilters(current=>({...current,Field:[routedField]}))},[fieldSlug]);
  const [saved,setSaved]=useState(()=>JSON.parse(localStorage.getItem('savedCreatives')||'[]'));
  const toggleSaved=id=>{const next=saved.includes(id)?saved.filter(item=>item!==id):[...saved,id];setSaved(next);localStorage.setItem('savedCreatives',JSON.stringify(next))};
- const scrollToBrowse=()=>browseRef.current?.scrollIntoView({behavior:'smooth',block:'start'});
- const explore=field=>{setFilters(current=>({...current,Field:[field]}));navigate(`/discover/${fieldSlugs[field]}`);setTimeout(scrollToBrowse,0)};
  const toggleFilter=(group,value)=>setFilters(current=>({...current,[group]:current[group].includes(value)?current[group].filter(item=>item!==value):[...current[group],value]}));
- const join=async()=>{try{const {profile}=await loadCreatorProfile();navigate(profile?'/portfolio':'/profile')}catch{navigate('/profile')}};
  const results=useMemo(()=>creatives.filter(creative=>matchesSearch(creative,q)&&Object.entries(filters).every(([group,values])=>matchesGroup(creative,group,values))),[creatives,q,filters]);
  const field=filters.Field.length===1?filters.Field[0]:null;
  return <PageShell>
-  <MarketplaceHero onBrowse={scrollToBrowse} onJoin={join} onExplore={explore}/>
-  <section ref={browseRef} id="marketplace-results" className="mx-auto max-w-[1500px] scroll-mt-20 px-5 pb-24 pt-14 lg:px-10">
+  <section id="marketplace-results" className="mx-auto max-w-[1500px] scroll-mt-20 px-5 pb-24 pt-14 lg:px-10">
    <p className="section-kicker">{field?`${field} portfolios`:'Search with intent'}</p>
    <div className="grid items-end gap-6 lg:grid-cols-[1fr_.8fr]"><div><h2 className="text-4xl font-semibold tracking-[-.045em] sm:text-5xl">{field?`A curated world of ${field}`:'Describe who you need'}</h2><p className="mt-3 max-w-2xl text-black/55">{field?'Work-led portfolios from New York creatives, connected to the people and collaborators behind each project.':'Search by field, aesthetic, place, timing, or budget — in one natural request.'}</p></div><label className="flex items-center gap-3 border-b border-black py-3"><Search className="h-5 w-5 shrink-0"/><input value={q} onChange={event=>setQ(event.target.value)} className="w-full bg-transparent text-base outline-none" placeholder="NYC photographer with cinematic nightlife style" aria-label="Search creative portfolios"/></label></div>
    <div className="mt-8"><DiscoveryFilters filters={filters} onToggle={toggleFilter}/></div>
