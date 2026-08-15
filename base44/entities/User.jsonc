@@ -1,0 +1,22 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "account_type": {
+      "type": "string",
+      "enum": [
+        "creative",
+        "hiring"
+      ]
+    },
+    "profile_photo": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "neighborhood": {
+      "type": "string"
+    }
+  }
+}

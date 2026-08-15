@@ -1,0 +1,35 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "creator_id": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category": {
+      "type": "string"
+    },
+    "project_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "creator_id",
+    "title"
+  ]
+}

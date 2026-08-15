@@ -1,0 +1,23 @@
+{
+  "name": "ProjectCollaborator",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "creative_id": {
+      "type": "string"
+    },
+    "creative_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "creative_id",
+    "role"
+  ]
+}

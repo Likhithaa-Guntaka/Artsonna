@@ -1,0 +1,22 @@
+{
+  "name": "Collection",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creative_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "user_id",
+    "name"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "creator_id": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "service_id": {
+      "type": "string"
+    },
+    "service_name": {
+      "type": "string"
+    },
+    "project_title": {
+      "type": "string"
+    },
+    "project_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "budget": {
+      "type": "number"
+    },
+    "description": {
+      "type": "string"
+    },
+    "reference_image": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined",
+        "completed",
+        "confirmed"
+      ],
+      "default": "pending"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": [
+        "unpaid",
+        "paid",
+        "refunded"
+      ],
+      "default": "unpaid"
+    }
+  },
+  "required": [
+    "creator_id",
+    "project_title",
+    "project_date",
+    "status"
+  ]
+}

@@ -1,0 +1,2 @@
+import SiteHeader from '@/components/SiteHeader';import SiteFooter from '@/components/SiteFooter';
+export default function PageShell({children}){return <div className="min-h-screen bg-[#f7f5f0] text-[#111]"><SiteHeader/><main>{children}</main><SiteFooter/></div>}

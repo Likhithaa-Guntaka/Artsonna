@@ -1,0 +1,57 @@
+{
+  "name": "CreativeProfile",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "profile_photo": {
+      "type": "string"
+    },
+    "cover_image": {
+      "type": "string"
+    },
+    "creative_role": {
+      "type": "string"
+    },
+    "bio": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "neighborhood": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "style_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "availability": {
+      "type": "string"
+    },
+    "starting_price": {
+      "type": "number"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "creative_role",
+    "neighborhood"
+  ]
+}

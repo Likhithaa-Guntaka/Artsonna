@@ -1,0 +1,46 @@
+{
+  "name": "Service",
+  "type": "object",
+  "properties": {
+    "creator_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "cover_image": {
+      "type": "string"
+    },
+    "starting_price": {
+      "type": "number"
+    },
+    "pricing_type": {
+      "type": "string",
+      "enum": [
+        "fixed",
+        "starting_at",
+        "custom"
+      ]
+    },
+    "duration": {
+      "type": "string"
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "availability": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "creator_id",
+    "name",
+    "starting_price"
+  ]
+}

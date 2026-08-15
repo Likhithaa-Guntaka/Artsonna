@@ -6,6 +6,16 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import ScrollToTop from './components/ScrollToTop';
+import Home from '@/pages/Home';
+import Discover from '@/pages/Discover';
+import CreativeDetail from '@/pages/CreativeDetail';
+import Saved from '@/pages/Saved';
+import BookingForm from '@/pages/BookingForm';
+import Bookings from '@/pages/Bookings';
+import Messages from '@/pages/Messages';
+import Community from '@/pages/Community';
+import Profile from '@/pages/Profile';
+import PortfolioManager from '@/pages/PortfolioManager';
 // Add page imports here
 
 const AuthenticatedApp = () => {
@@ -34,7 +44,16 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      {/* Add your page Route elements here */}
+      <Route path="/" element={<Home />} />
+      <Route path="/discover" element={<Discover />} />
+      <Route path="/creative/:id" element={<CreativeDetail />} />
+      <Route path="/saved" element={<Saved />} />
+      <Route path="/book/:id" element={<BookingForm />} />
+      <Route path="/bookings" element={<Bookings />} />
+      <Route path="/messages" element={<Messages />} />
+      <Route path="/community" element={<Community />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/portfolio" element={<PortfolioManager />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
