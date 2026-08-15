@@ -1,0 +1,259 @@
+{
+  "name": "Portfolio",
+  "type": "object",
+  "properties": {
+    "creative_profile_id": {
+      "type": "string"
+    },
+    "discipline": {
+      "type": "string"
+    },
+    "identity_description": {
+      "type": "string"
+    },
+    "aesthetic_direction": {
+      "type": "string"
+    },
+    "style_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inspirations": {
+      "type": "string"
+    },
+    "portfolio_url": {
+      "type": "string"
+    },
+    "instagram_url": {
+      "type": "string"
+    },
+    "behance_url": {
+      "type": "string"
+    },
+    "youtube_url": {
+      "type": "string"
+    },
+    "personal_website_url": {
+      "type": "string"
+    },
+    "other_links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "moodboard_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "headline": {
+      "type": "string"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "about": {
+      "type": "string"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "generated_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggested_categories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggested_project_titles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "service_descriptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "design_tokens": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "portfolio_theme": {
+      "type": "string",
+      "enum": [
+        "editorial",
+        "minimal",
+        "bold",
+        "raw",
+        "playful",
+        "cinematic"
+      ],
+      "default": "editorial"
+    },
+    "background_color": {
+      "type": "string",
+      "default": "#F7F5F0"
+    },
+    "surface_color": {
+      "type": "string",
+      "default": "#FFFFFF"
+    },
+    "text_color": {
+      "type": "string",
+      "default": "#111111"
+    },
+    "accent_color": {
+      "type": "string",
+      "default": "#111111"
+    },
+    "heading_font": {
+      "type": "string",
+      "default": "editorial"
+    },
+    "body_font": {
+      "type": "string",
+      "default": "modern"
+    },
+    "typography_scale": {
+      "type": "string",
+      "enum": [
+        "restrained",
+        "balanced",
+        "oversized"
+      ],
+      "default": "balanced"
+    },
+    "layout_style": {
+      "type": "string",
+      "enum": [
+        "grid",
+        "stacked",
+        "asymmetric",
+        "full_bleed",
+        "mixed"
+      ],
+      "default": "asymmetric"
+    },
+    "gallery_style": {
+      "type": "string",
+      "enum": [
+        "grid",
+        "masonry",
+        "editorial",
+        "full_bleed",
+        "mixed"
+      ],
+      "default": "editorial"
+    },
+    "hero_style": {
+      "type": "string",
+      "enum": [
+        "split",
+        "image_first",
+        "type_first",
+        "full_bleed"
+      ],
+      "default": "split"
+    },
+    "spacing_style": {
+      "type": "string",
+      "enum": [
+        "compact",
+        "balanced",
+        "generous"
+      ],
+      "default": "generous"
+    },
+    "border_style": {
+      "type": "string",
+      "enum": [
+        "none",
+        "fine",
+        "strong"
+      ],
+      "default": "fine"
+    },
+    "animation_style": {
+      "type": "string",
+      "enum": [
+        "none",
+        "subtle",
+        "expressive"
+      ],
+      "default": "subtle"
+    },
+    "mood": {
+      "type": "string"
+    },
+    "hero_image": {
+      "type": "string"
+    },
+    "portfolio_section_order": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hidden_sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft"
+    },
+    "public_slug": {
+      "type": "string"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "creative_profile_id",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "data.status": "published"
+        },
+        {
+          "created_by_id": "{{user.id}}"
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

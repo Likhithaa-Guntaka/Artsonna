@@ -48,7 +48,9 @@
         "editorial",
         "minimal",
         "bold",
-        "playful"
+        "raw",
+        "playful",
+        "cinematic"
       ],
       "default": "editorial"
     },
@@ -60,6 +62,12 @@
         "dark"
       ],
       "default": "light"
+    },
+    "background_color": {
+      "type": "string"
+    },
+    "text_color": {
+      "type": "string"
     },
     "accent_color": {
       "type": "string",
@@ -75,13 +83,17 @@
       ],
       "default": "editorial"
     },
+    "typography_mood": {
+      "type": "string"
+    },
     "layout_style": {
       "type": "string",
       "enum": [
         "grid",
         "stacked",
         "asymmetric",
-        "full_bleed"
+        "full_bleed",
+        "mixed"
       ],
       "default": "asymmetric"
     },
@@ -117,6 +129,9 @@
     "marketplace_eligible": {
       "type": "boolean",
       "default": false
+    },
+    "public_portfolio_slug": {
+      "type": "string"
     },
     "existing_portfolio_url": {
       "type": "string"

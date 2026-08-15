@@ -65,7 +65,11 @@ module.exports = {
   			heading: ['var(--font-heading)'],
   			body: ['var(--font-body)'],
   			display: ['var(--font-display)'],
-  			mono: ['var(--font-mono)']
+  			mono: ['var(--font-mono)'],
+  			portfolioEditorial: ['var(--font-portfolio-editorial)'],
+  			portfolioModern: ['var(--font-portfolio-modern)'],
+  			portfolioExpressive: ['var(--font-portfolio-expressive)'],
+  			portfolioBody: ['var(--font-portfolio-body)']
   		},
   		keyframes: {
   			'accordion-down': {

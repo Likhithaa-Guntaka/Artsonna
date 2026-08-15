@@ -5,6 +5,9 @@
     "profile_id": {
       "type": "string"
     },
+    "portfolio_id": {
+      "type": "string"
+    },
     "file_url": {
       "type": "string"
     },
@@ -15,12 +18,25 @@
       "type": "string",
       "enum": [
         "image",
-        "video"
+        "video",
+        "file"
       ]
+    },
+    "asset_kind": {
+      "type": "string",
+      "enum": [
+        "work",
+        "reference"
+      ],
+      "default": "work"
     },
     "selected": {
       "type": "boolean",
       "default": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
     },
     "sort_order": {
       "type": "number",
