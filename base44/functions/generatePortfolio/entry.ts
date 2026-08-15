@@ -11,6 +11,42 @@ function classifyUrl(value) {
   } catch { return null; }
 }
 
+function decodeXml(value = '') {
+  return value.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
+}
+
+function videoIdFromUrl(value = '') {
+  try {
+    const url = new URL(value);
+    if (url.hostname.replace(/^www\./, '') === 'youtu.be') return url.pathname.split('/').filter(Boolean)[0] || '';
+    return url.searchParams.get('v') || url.pathname.match(/\/(?:shorts|embed)\/([\w-]{6,})/)?.[1] || '';
+  } catch { return ''; }
+}
+
+async function fetchYouTubeChannelVideos(channelUrl) {
+  const source = new URL(channelUrl);
+  let channelId = source.pathname.match(/\/channel\/(UC[\w-]{20,})/)?.[1] || '';
+  if (!channelId) {
+    const page = await fetch(channelUrl, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; NYCCreativeHub/1.0)' } });
+    if (!page.ok) return [];
+    const html = await page.text();
+    channelId = html.match(/"channelId":"(UC[\w-]{20,})"/)?.[1] || html.match(/itemprop="channelId"\s+content="(UC[\w-]{20,})"/)?.[1] || html.match(/\/channel\/(UC[\w-]{20,})/)?.[1] || '';
+  }
+  if (!channelId) return [];
+  const feed = await fetch(`https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(channelId)}`);
+  if (!feed.ok) return [];
+  const xml = await feed.text();
+  return [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].slice(0, 8).map(match => {
+    const entry = match[1];
+    const videoId = entry.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1] || '';
+    const title = decodeXml(entry.match(/<title>([\s\S]*?)<\/title>/)?.[1] || 'YouTube video');
+    const description = decodeXml(entry.match(/<media:description>([\s\S]*?)<\/media:description>/)?.[1] || '').slice(0, 700);
+    const published = entry.match(/<published>([^<]+)<\/published>/)?.[1] || '';
+    const thumbnail = decodeXml(entry.match(/<media:thumbnail[^>]+url="([^"]+)"/)?.[1] || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
+    return { title, video_url: `https://www.youtube.com/watch?v=${videoId}`, thumbnail_url: thumbnail, description, published_at: published, project_name: '', matched_project_title: '', technologies: [], skills: [] };
+  }).filter(video => videoIdFromUrl(video.video_url));
+}
+
 export default async function(req) {
   try {
     const base44 = createClientFromRequest(req);
@@ -30,6 +66,9 @@ export default async function(req) {
     const questionnaireUrls = `${identity} ${inspirations}`.match(/https?:\/\/[^\s<>"']+/g) || [];
     const rawUrls = [...submittedUrls, ...questionnaireUrls];
     const sources = [...new Set(rawUrls.filter(url => typeof url === 'string').map(url => url.trim()).filter(Boolean))].slice(0, 10).map(url => ({ url: url.slice(0, 500), platform: classifyUrl(url) })).filter(source => source.platform);
+    const youtubeSources = sources.filter(source => source.platform === 'youtube').slice(0, 2);
+    const youtubeResults = await Promise.all(youtubeSources.map(source => fetchYouTubeChannelVideos(source.url).catch(() => [])));
+    const verifiedYouTubeVideos = [...new Map(youtubeResults.flat().map(video => [videoIdFromUrl(video.video_url), video])).values()].slice(0, 8);
     if (!identity || !profile.display_name || !profile.creative_role) return Response.json({ error: 'Missing creator identity' }, { status: 400 });
 
     const prompt = `You are the portfolio enrichment and creative-direction system for NYC Creative Hub. Build a distinctive portfolio for ${profile.display_name}, a ${profile.creative_role} based in ${profile.neighborhood || 'New York City'}.
@@ -43,6 +82,7 @@ SOURCE PRIORITY — mandatory when facts conflict:
 
 Questionnaire context: primary aesthetic ${aesthetic}; supporting tags ${styleTags.join(', ')}; influences ${inspirations || 'not provided'}; existing bio ${String(profile.short_bio || '').slice(0, 800)}; services ${services.map(service => `${service.name}: ${service.description || ''}`).join('; ') || 'not listed'}.
 External sources to research only when publicly accessible and permitted: ${JSON.stringify(sources)}.
+Verified public YouTube channel videos fetched directly from the submitted channel: ${JSON.stringify(verifiedYouTubeVideos).slice(0, 12000)}. Rank these against the questionnaire and portfolio context, keep only the strongest relevant videos, and preserve their exact verified video and thumbnail URLs.
 
 Follow Detect → Fetch → Extract → Normalize → Match → Rank → Merge → Render. For YouTube channel, profile, playlist, or creator URLs, inspect publicly available videos and return only professional, technical, creative, educational, performance, research, project, or accomplishment-focused videos that materially strengthen this portfolio. Exclude personal, unrelated, repetitive, or weak content. Capture reliable titles, URLs, thumbnails, concise descriptions, dates when useful, technologies, skills, and project associations. Before making a separate video entry, compare names, descriptions, tools, questionnaire details, existing projects, LinkedIn, GitHub, and websites. Set matched_project_title when a video belongs to an existing project, and do not duplicate that project.
 For LinkedIn, use only public permitted facts. Contextually summarize useful headline, about, experience, education, skills, certifications, projects, awards, or accomplishments. Do not copy entire descriptions. Include only skills supported by questionnaire, projects, experience, GitHub, videos, or another credible source.
@@ -86,9 +126,19 @@ Study attached work when present. Return concise creator-approved copy and a coh
     }
     result.source_status = sources.map(source => {
       const reported = Array.isArray(result.source_status) ? result.source_status.find(item => item.url === source.url) : null;
+      if (source.platform === 'youtube' && verifiedYouTubeVideos.length) return { platform: 'youtube', url: source.url, status: 'used', summary: `${verifiedYouTubeVideos.length} public channel videos were found and parsed.` };
       return reported ? { ...reported, platform: source.platform, url: source.url } : { platform: source.platform, url: source.url, status: 'unavailable', summary: 'No reliable public information was available.' };
     });
-    if (!sources.some(source => source.platform === 'youtube')) result.featured_videos = Array.isArray(existingPortfolio.featured_videos) ? existingPortfolio.featured_videos : [];
+    if (verifiedYouTubeVideos.length) {
+      const generatedVideos = Array.isArray(result.featured_videos) ? result.featured_videos : [];
+      const ranked = generatedVideos.map(video => {
+        const verified = verifiedYouTubeVideos.find(item => videoIdFromUrl(item.video_url) === videoIdFromUrl(video.video_url));
+        return verified ? { ...verified, ...video, video_url: verified.video_url, thumbnail_url: verified.thumbnail_url } : null;
+      }).filter(Boolean);
+      result.featured_videos = ranked.length ? ranked.slice(0, 6) : verifiedYouTubeVideos.slice(0, 6);
+    } else if (!sources.some(source => source.platform === 'youtube') || !Array.isArray(result.featured_videos) || !result.featured_videos.length) {
+      result.featured_videos = Array.isArray(existingPortfolio.featured_videos) ? existingPortfolio.featured_videos : [];
+    }
     if (!sources.some(source => source.platform === 'linkedin')) {
       result.experience = Array.isArray(existingPortfolio.experience) ? existingPortfolio.experience : [];
       result.education = Array.isArray(existingPortfolio.education) ? existingPortfolio.education : [];
