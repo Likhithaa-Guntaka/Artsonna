@@ -92,6 +92,173 @@
         "type": "string"
       }
     },
+    "enriched_projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "github_url": {
+            "type": "string"
+          },
+          "live_url": {
+            "type": "string"
+          },
+          "youtube_url": {
+            "type": "string"
+          },
+          "thumbnail_url": {
+            "type": "string"
+          },
+          "matched_project_title": {
+            "type": "string"
+          },
+          "professional_context": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "featured_videos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "video_url": {
+            "type": "string"
+          },
+          "thumbnail_url": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "published_at": {
+            "type": "string"
+          },
+          "project_name": {
+            "type": "string"
+          },
+          "matched_project_title": {
+            "type": "string"
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "skills": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "institution": {
+            "type": "string"
+          },
+          "program": {
+            "type": "string"
+          },
+          "period": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "certifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "issuer": {
+            "type": "string"
+          },
+          "year": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "source_status": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "used",
+              "limited",
+              "unavailable"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "design_tokens": {
       "type": "object",
       "additionalProperties": true
