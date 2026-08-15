@@ -1,0 +1,5 @@
+import StoryMake from '@/components/home/story/StoryMake';
+import StoryDiscover from '@/components/home/story/StoryDiscover';
+import StoryConnect from '@/components/home/story/StoryConnect';
+
+export default function HomeProductStory(){return <section className="mx-auto max-w-[1500px] px-5 py-24 lg:px-10 lg:py-32"><div className="max-w-4xl"><p className="section-kicker">How It Works</p><h2 className="text-5xl font-semibold leading-[.94] tracking-[-.055em] sm:text-7xl lg:text-8xl">Make the work.<br/>We’ll help it go somewhere.</h2></div><div className="relative mt-16 border-l border-terracotta/35 pl-6 sm:pl-10 lg:mt-24 lg:pl-14"><StoryMake/><div className="text-center text-2xl text-terracotta">↓</div><StoryDiscover/><div className="text-center text-2xl text-terracotta">↓</div><StoryConnect/></div></section>}
