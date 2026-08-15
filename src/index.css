@@ -33,6 +33,11 @@
     --radius: 0.5rem;
     --home-background: 40 23% 95%;
     --terracotta: 14 42% 46%;
+    --story-rose: 354 25% 72%;
+    --story-olive: 67 21% 40%;
+    --story-aubergine: 323 22% 27%;
+    --story-gold: 36 46% 55%;
+    --story-dust: 33 18% 83%;
     --font-heading: ui-sans-serif, system-ui, sans-serif;
     --font-body: ui-sans-serif, system-ui, sans-serif;
     --font-display: ui-sans-serif, system-ui, sans-serif;
@@ -86,6 +91,11 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
     --home-background: 40 23% 95%;
     --terracotta: 14 42% 46%;
+    --story-rose: 354 25% 72%;
+    --story-olive: 67 21% 40%;
+    --story-aubergine: 323 22% 27%;
+    --story-gold: 36 46% 55%;
+    --story-dust: 33 18% 83%;
   }
 }
 

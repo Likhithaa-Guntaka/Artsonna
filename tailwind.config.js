@@ -42,6 +42,13 @@ module.exports = {
   			},
   			home: 'hsl(var(--home-background))',
   			terracotta: 'hsl(var(--terracotta))',
+  			story: {
+  				rose: 'hsl(var(--story-rose))',
+  				olive: 'hsl(var(--story-olive))',
+  				aubergine: 'hsl(var(--story-aubergine))',
+  				gold: 'hsl(var(--story-gold))',
+  				dust: 'hsl(var(--story-dust))'
+  			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
