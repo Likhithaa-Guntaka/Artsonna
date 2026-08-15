@@ -102,8 +102,8 @@
 }
 
 @layer components {
-  .section-kicker { @apply mb-3 text-xs font-medium uppercase tracking-[.2em] text-black/50; }
-  .section-title { @apply text-4xl font-semibold tracking-[-.045em] sm:text-5xl; }
+  .section-kicker { @apply mb-2 text-xs font-medium uppercase tracking-[.2em] text-black/50; }
+  .section-title { @apply text-3xl font-semibold tracking-[-.045em] sm:text-4xl; }
   .filter-select { @apply rounded-full border border-black/20 bg-transparent px-4 py-2 text-sm outline-none; }
   .field-label { @apply flex flex-col gap-2 text-xs font-medium uppercase tracking-[.12em] text-black/55; }
   .form-field { @apply w-full border-b border-black/25 bg-transparent px-0 py-3 text-base normal-case tracking-normal text-black outline-none focus:border-black; }

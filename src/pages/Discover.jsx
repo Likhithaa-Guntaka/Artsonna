@@ -29,13 +29,13 @@ export default function Discover(){
  const results=useMemo(()=>creatives.filter(creative=>matchesSearch(creative,q)&&Object.entries(filters).every(([group,values])=>matchesGroup(creative,group,values))),[creatives,q,filters]);
  const field=filters.Field.length===1?filters.Field[0]:null;
  return <PageShell>
-  <section id="marketplace-results" className="mx-auto max-w-[1500px] scroll-mt-20 px-5 pb-24 pt-14 lg:px-10">
+  <section id="marketplace-results" className="mx-auto max-w-[1500px] scroll-mt-16 px-5 pb-16 pt-10 lg:px-10">
    <p className="section-kicker">{field?`${field} portfolios`:'Search with intent'}</p>
-   <div className="grid items-end gap-6 lg:grid-cols-[1fr_.8fr]"><div><h2 className="text-4xl font-semibold tracking-[-.045em] sm:text-5xl">{field?`A curated world of ${field}`:'Describe who you need'}</h2><p className="mt-3 max-w-2xl text-black/55">{field?'Work-led portfolios from New York creatives, connected to the people and collaborators behind each project.':'Search by field, aesthetic, place, timing, or budget — in one natural request.'}</p></div><label className="flex items-center gap-3 border-b border-black py-3"><Search className="h-5 w-5 shrink-0"/><input value={q} onChange={event=>setQ(event.target.value)} className="w-full bg-transparent text-base outline-none" placeholder="NYC photographer with cinematic nightlife style" aria-label="Search creative portfolios"/></label></div>
-   <div className="mt-8"><DiscoveryFilters filters={filters} onToggle={toggleFilter}/></div>
-   <p className="mb-7 mt-12 text-sm text-black/50">{results.length} portfolios in New York</p>
-   <div className="grid items-start gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">{results.map(creative=><CreativeCard key={creative.id} creative={creative}/>)}</div>
-   {!results.length&&<p className="py-24 text-center text-black/45">No portfolios match that request yet.</p>}
+   <div className="grid items-end gap-6 lg:grid-cols-[1fr_.8fr]"><div><h2 className="text-4xl font-semibold tracking-[-.045em] sm:text-5xl">{field?`A curated world of ${field}`:'Describe who you need'}</h2><p className="mt-3 max-w-2xl text-black/55">{field?'Work-led portfolios from New York creatives, connected to the people and collaborators behind each project.':'Search by field, aesthetic, place, timing, or budget, all in one natural request.'}</p></div><label className="flex items-center gap-3 border-b border-black py-3"><Search className="h-5 w-5 shrink-0"/><input value={q} onChange={event=>setQ(event.target.value)} className="w-full bg-transparent text-base outline-none" placeholder="NYC photographer with cinematic nightlife style" aria-label="Search creative portfolios"/></label></div>
+   <div className="mt-6"><DiscoveryFilters filters={filters} onToggle={toggleFilter}/></div>
+   <p className="mb-5 mt-8 text-sm text-black/50">{results.length} portfolios in New York</p>
+   <div className="grid items-start gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">{results.map(creative=><CreativeCard key={creative.id} creative={creative}/>)}</div>
+   {!results.length&&<p className="py-16 text-center text-black/45">No portfolios match that request yet.</p>}
   </section>
  </PageShell>
 }

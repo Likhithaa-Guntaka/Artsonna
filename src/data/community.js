@@ -29,10 +29,10 @@ export const circles=[
 ];
 export const samplePosts=[
  {id:'post-1',circle_id:'film-photo',author_name:'Devon Price',message:'Anyone shooting 35mm around Chinatown this weekend? I want to compare scans after.'},
- {id:'post-2',circle_id:'film-photo',author_name:'Maya Chen',message:'Just finished this editorial — looking for feedback on whether the edit needs one quieter frame.'},
+ {id:'post-2',circle_id:'film-photo',author_name:'Maya Chen',message:'Just finished this editorial. I’m looking for feedback on whether the edit needs one quieter frame.'},
  {id:'post-3',circle_id:'motion-design',author_name:'Noah Feld',message:'Need a PA for a music video Tuesday in Queens. Small crew, late exterior.'},
  {id:'post-4',circle_id:'fashion-stylists',author_name:'Sarah Kim',message:'Looking for a makeup artist for a beauty test Sunday on the Lower East Side.'},
- {id:'post-5',circle_id:'fashion-stylists',author_name:'Talia Brooks',message:'I have a rack of samples available for one test shoot next week — mostly natural fabrics and soft tailoring.'}
+ {id:'post-5',circle_id:'fashion-stylists',author_name:'Talia Brooks',message:'I have a rack of samples available for one test shoot next week, mostly natural fabrics and soft tailoring.'}
 ];
 export const weeklyPrompt={id:'one-color',eyebrow:'This week',title:'Make something using only one color',description:'Shoot, style, draw, or design one piece. Share the constraint and what it unlocked.'};
 export const sampleSubmissions=[
