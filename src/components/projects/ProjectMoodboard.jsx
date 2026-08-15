@@ -1,0 +1,2 @@
+import { Image } from '@/components/ui/image';
+export default function ProjectMoodboard({images=[]}){if(!images.length)return null;return <div className="mt-6"><p className="text-[10px] uppercase tracking-widest text-black/40">Moodboard</p><div className="mt-3 grid grid-cols-2 gap-1.5">{images.slice(0,3).map((src,index)=><Image key={src} src={src} alt="Project visual reference" className={`${index===0?'col-span-2 aspect-[16/9]':'aspect-square'} w-full`}/>)}</div></div>}

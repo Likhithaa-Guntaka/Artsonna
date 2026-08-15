@@ -9,7 +9,7 @@ import { creatives as sampleCreatives } from '@/data/marketplace';
 import usePublishedCreatives from '@/hooks/usePublishedCreatives';
 import { loadCreatorProfile } from '@/lib/creatorProfile';
 
-const fieldRoles={Photography:['Photographer'], 'Film / Video':['Videographer','Filmmaker','Cinematographer'], 'Makeup & Beauty':['Makeup Artist','Beauty Artist'], Styling:['Stylist'], 'Creative Direction':['Creative Director'], Design:['Designer'], Illustration:['Illustrator'], Art:['Artist','Multidisciplinary Artist'], Music:['Musician','Performer','Music Photographer']};
+const fieldRoles={Photography:['Photographer'], 'Film / Video':['Videographer','Filmmaker','Cinematographer','Animator / Motion Designer'], 'Makeup & Beauty':['Makeup Artist','Beauty Artist'], Styling:['Stylist','Fashion Designer'], 'Creative Direction':['Creative Director','Set Designer'], Design:['Designer','Graphic Designer','Animator / Motion Designer'], Illustration:['Illustrator'], Art:['Artist','Multidisciplinary Artist','Set Designer'], Music:['Musician','Performer','Music Photographer','DJ / Music Producer']};
 const fieldSlugs={Photography:'photography','Film / Video':'film-video','Makeup & Beauty':'makeup-beauty',Styling:'styling','Creative Direction':'creative-direction',Design:'design',Illustration:'illustration',Art:'art',Music:'music'};
 const slugFields=Object.fromEntries(Object.entries(fieldSlugs).map(([field,slug])=>[slug,field]));
 const stopWords=new Set(['a','an','the','with','for','in','on','at','and','or','of','to','nyc','new','york','artist','creative','available','style','shoot']);
