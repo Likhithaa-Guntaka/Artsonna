@@ -20,7 +20,8 @@ export default function Discover(){
  const creatives=[...published,...sampleCreatives];
  const [params]=useSearchParams();
  const {field:fieldSlug}=useParams();
- const initialField=slugFields[fieldSlug]||params.get('field');
+ const requestedField=params.get('field');
+ const initialField=slugFields[fieldSlug]||slugFields[requestedField]||requestedField;
  const [q,setQ]=useState('');
  const [filters,setFilters]=useState({Field:initialField?[initialField]:[],Style:[],Logistics:[],People:[]});
  useEffect(()=>{const routedField=slugFields[fieldSlug];if(routedField)setFilters(current=>({...current,Field:[routedField]}))},[fieldSlug]);
