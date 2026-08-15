@@ -35,6 +35,9 @@
     "youtube_url": {
       "type": "string"
     },
+    "linkedin_url": {
+      "type": "string"
+    },
     "personal_website_url": {
       "type": "string"
     },
