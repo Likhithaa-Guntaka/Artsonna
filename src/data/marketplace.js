@@ -12,9 +12,9 @@ export const projects = [
   { id:'after', title:'After Hours', category:'Fashion', image:'https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=1400&q=85', credits:['Styling — Sarah Kim','Photography — Maya Chen'] }
 ];
 export const events = [
-  { id:'photo-walk', title:'Lower Manhattan Photo Walk', date:'Aug 23', time:'5:30 PM', location:'Seaport, Manhattan', type:'Offline', attending:84, image:'https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=1200&q=85', description:'An evening walk for image-makers of every level.' },
+  { id:'photo-walk', title:'Lower Manhattan Photo Walk', date:'Aug 23', time:'5:30 PM', location:'Seaport, Manhattan', type:'Offline', attending:84, series:'NYC Photo Walks', frequency:'Monthly', pastAttendance:412, usualAttendance:76, image:'https://images.unsplash.com/photo-1522083165195-3424ed129620?auto=format&fit=crop&w=1200&q=85', description:'An evening walk for image-makers of every level.' },
   { id:'portfolio', title:'Open Portfolio Review', date:'Aug 28', time:'7:00 PM', location:'Online', type:'Online', attending:126, image:'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1200&q=85', description:'Thoughtful feedback from working NYC creative directors.' },
-  { id:'type-night', title:'Brooklyn Type Night', date:'Sep 04', time:'6:30 PM', location:'DUMBO, Brooklyn', type:'Offline', attending:58, image:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85', description:'A casual gathering for designers, letterers, and type lovers.' }
+  { id:'type-night', title:'Brooklyn Type Night', date:'Sep 04', time:'6:30 PM', location:'DUMBO, Brooklyn', type:'Offline', attending:58, series:'Brooklyn Type Night', frequency:'Monthly', pastAttendance:638, usualAttendance:54, image:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85', description:'A casual gathering for designers, letterers, and type lovers.' }
 ];
 export const services = [
   { id:'portrait', name:'Portrait Photography', duration:'90-minute session', price:300, description:'A relaxed portrait session on location or in studio.', deliverables:'15 edited high-resolution images' },

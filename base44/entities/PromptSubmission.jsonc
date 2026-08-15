@@ -1,0 +1,30 @@
+{
+  "name": "PromptSubmission",
+  "type": "object",
+  "properties": {
+    "prompt_id": {
+      "type": "string"
+    },
+    "creator_id": {
+      "type": "string"
+    },
+    "creator_name": {
+      "type": "string"
+    },
+    "creator_image": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "prompt_id",
+    "creator_id",
+    "creator_name",
+    "file_url"
+  ]
+}

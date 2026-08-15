@@ -37,6 +37,19 @@
     "attendee_count": {
       "type": "number",
       "default": 0
+    },
+    "series_name": {
+      "type": "string"
+    },
+    "series_frequency": {
+      "type": "string"
+    },
+    "past_attendance_count": {
+      "type": "number",
+      "default": 0
+    },
+    "usual_attendance": {
+      "type": "number"
     }
   },
   "required": [

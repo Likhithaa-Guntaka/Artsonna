@@ -1,0 +1,2 @@
+import BoardGallery from '@/components/community/BoardGallery';import CreatorSpotlight from '@/components/community/CreatorSpotlight';
+export default function DiscoverCommunity(){return <section className="mx-auto max-w-[1500px] space-y-16 px-5 pb-20 lg:px-10"><div><p className="section-kicker">Gather inspiration</p><h2 className="section-title mb-8">Boards</h2><BoardGallery/></div><div><p className="section-kicker">Meet through stories</p><CreatorSpotlight/></div></section>}

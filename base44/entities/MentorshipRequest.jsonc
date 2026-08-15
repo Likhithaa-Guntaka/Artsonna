@@ -1,0 +1,43 @@
+{
+  "name": "MentorshipRequest",
+  "type": "object",
+  "properties": {
+    "mentor_profile_id": {
+      "type": "string"
+    },
+    "mentor_name": {
+      "type": "string"
+    },
+    "requester_id": {
+      "type": "string"
+    },
+    "requester_name": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 20
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "declined"
+      ],
+      "default": "pending"
+    },
+    "request_type": {
+      "type": "string",
+      "enum": [
+        "mentorship"
+      ],
+      "default": "mentorship"
+    }
+  },
+  "required": [
+    "mentor_profile_id",
+    "requester_id",
+    "status"
+  ]
+}

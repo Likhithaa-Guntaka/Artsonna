@@ -139,6 +139,19 @@
     "published_date": {
       "type": "string",
       "format": "date-time"
+    },
+    "open_to_mentor": {
+      "type": "boolean",
+      "default": false
+    },
+    "mentor_blurb": {
+      "type": "string"
+    },
+    "circle_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": [
