@@ -53,6 +53,58 @@
         "type": "string"
       }
     },
+    "questionnaire_responses": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "questionnaire_submitted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "questionnaire_draft": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "values": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "dirty_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "questionnaire_draft_updated_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "portfolio_content_updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "headline": {
       "type": "string"
     },
