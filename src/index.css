@@ -107,11 +107,4 @@
   .filter-select { @apply rounded-full border border-black/20 bg-transparent px-4 py-2 text-sm outline-none; }
   .field-label { @apply flex flex-col gap-2 text-xs font-medium uppercase tracking-[.12em] text-black/55; }
   .form-field { @apply w-full border-b border-black/25 bg-transparent px-0 py-3 text-base normal-case tracking-normal text-black outline-none focus:border-black; }
-  .audio-wave-bar { transition: height 90ms ease-out, opacity 180ms ease; opacity: .72; }
-  .audio-wave-active { animation: audio-wave 900ms ease-in-out infinite alternate; }
-}
-
-@keyframes audio-wave {
-  from { transform: scaleY(.72); opacity: .58; }
-  to { transform: scaleY(1); opacity: .95; }
 }
