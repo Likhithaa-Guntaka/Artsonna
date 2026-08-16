@@ -2,7 +2,8 @@
 
 Artsonna is a curated marketplace for discovering and hiring creative professionals across New York City. It combines portfolio publishing, creative discovery, project collaboration, bookings, messaging, and local community experiences in one editorial-first platform.
 
-Visit : https://artsonna.base44.app/
+Visit: https://artsonna.base44.app/
+Demo: https://youtu.be/oXgHvkZ8ov8?si=astbCJIvud2TvV3j
 
 ## Product Overview
 
